@@ -3,7 +3,7 @@
     <header class="header">
       <div class="headerLogo">
         <div class="headerBg"></div>
-        <div class="headerSearch">
+        <div class="headerSearch" @click="$router.push('search')">
           <i class="iconfont iconicon-test1"></i>
           <span class="text">网红爆款安瓶 升级特惠</span>
         </div>
@@ -47,66 +47,71 @@
         <div class="mask clearFix" v-show="maskShow" >
           <div class="title">全部频道</div>
           <ul class="maskList">
-              <li class="maskLi">
+            <li class="maskLi">
               <a href="javascript:;">推荐</a>
             </li>
-              <li class="maskLi">
-                <a href="javascript:;">居家生活</a>
-              </li>
-              <li class="maskLi">
-                <a href="javascript:;">服饰鞋包</a>
-              </li>
-              <li class="maskLi">
-                <a href="javascript:;">美食酒水</a>
-              </li>
-              <li class="maskLi">
-                <a href="javascript:;">个护清洁</a>
-              </li>
-              <li class="maskLi">
-                <a href="javascript:;">母婴亲子</a>
-              </li>
-              <li class="maskLi">
-                <a href="javascript:;">运动旅行</a>
-              </li>
-              <li class="maskLi">
-                <a href="javascript:;">数码家电</a>
-              </li>
-              <li class="maskLi">
-                <a href="javascript:;">全球特色</a>
-              </li>
-            </ul>
+            <li class="maskLi">
+              <a href="javascript:;">居家生活</a>
+            </li>
+            <li class="maskLi">
+              <a href="javascript:;">服饰鞋包</a>
+            </li>
+            <li class="maskLi">
+              <a href="javascript:;">美食酒水</a>
+            </li>
+            <li class="maskLi">
+              <a href="javascript:;">个护清洁</a>
+            </li>
+            <li class="maskLi">
+              <a href="javascript:;">母婴亲子</a>
+            </li>
+            <li class="maskLi">
+              <a href="javascript:;">运动旅行</a>
+            </li>
+            <li class="maskLi">
+              <a href="javascript:;">数码家电</a>
+            </li>
+            <li class="maskLi">
+              <a href="javascript:;">全球特色</a>
+            </li>
+          </ul>
         </div>
-
       </div>
     </header>
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="https://yanxuan.nosdn.127
+    <div class="homeMain">
+      <div class="homeScroll">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="https://yanxuan.nosdn.127
 .net/8db54c351c497620aff3b0e65dd5f95c.jpg">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://yanxuan.nosdn.127.net/a7b08e3aed13787da15c58879963be01.jpg">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://yanxuan.nosdn.127.net/68f443a9bcc78b0c46a414a633f66c47.jpg">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://yanxuan.nosdn.127
+            </div>
+            <div class="swiper-slide">
+              <img src="https://yanxuan.nosdn.127.net/a7b08e3aed13787da15c58879963be01.jpg">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://yanxuan.nosdn.127.net/68f443a9bcc78b0c46a414a633f66c47.jpg">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://yanxuan.nosdn.127
 .net/8db54c351c497620aff3b0e65dd5f95c.jpg">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://yanxuan.nosdn.127.net/a7b08e3aed13787da15c58879963be01.jpg">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://yanxuan.nosdn.127.net/68f443a9bcc78b0c46a414a633f66c47.jpg">
+            </div>
+          </div>
+          <!-- 如果需要分页器 -->
+          <div class="swiper-pagination"></div>
         </div>
-        <div class="swiper-slide">
-          <img src="https://yanxuan.nosdn.127.net/a7b08e3aed13787da15c58879963be01.jpg">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://yanxuan.nosdn.127.net/68f443a9bcc78b0c46a414a633f66c47.jpg">
-        </div>
+        <Service></Service>
+        <Main></Main>
       </div>
-      <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
+
     </div>
-    <Service></Service>
-    <Main></Main>
+
   </div>
 </template>
 
@@ -140,6 +145,12 @@
             eventPassthrough:'vertical'   //忽略竖直方向的滚动
           })
         }
+        new BScroll('.homeMain',{
+          click:true,
+          scrollY:true
+
+        })
+
         new Swiper ('.swiper-container', {
           loop: true,
           autoplay:true,
@@ -147,8 +158,8 @@
             el: '.swiper-pagination',
           }
         })
-
       })
+
       this.$store.dispatch('getPolicyDescList')
 
 
@@ -164,9 +175,9 @@
 
 <style lang="stylus" rel="stylesheet/stylus" >
   .homeContainer
+    height 100%
     .header
       width 100%
-      height 100%
       .headerLogo
         height 80px
         line-height 80px
@@ -200,12 +211,9 @@
           outline none
           color #b4282d
           background-color #fff
-
       .headerNav
         position relative
         width 100%
-        height 100%
-        overflow hidden
         .navList
           width 1600px
           height 70px
@@ -239,13 +247,13 @@
             i
               font-size 48px
         .mask
-          width 100%
-          height 100%
-          z-index 99
-          position fixed
-          top 80px
+          position absolute
+          top 0
           left 0
-          background: rgba(0,0,0,.5)
+          width 750px
+          height 1334px
+          background-color rgba(0,0,0,.4)
+          z-index 10
           .title
             height 70px
             line-height 70px
@@ -253,6 +261,7 @@
             padding-left 28px
             background white
           .maskList
+            position absolute
             width 100%
             height 300px
             background white
@@ -268,13 +277,22 @@
               line-height 50px
               margin-top 20px
               background-color #FAFAFA
-    .swiper-container
-      width 100%
-      height 400px
-      .swiper-wrapper
-        zoom 1
-        .swiper-slide
+            .homeMain
+              height 100%
+              .homeScroll
+                .swiper-container
+                  width 100%
+                  height 400px
+                  .swiper-wrapper
+                    zoom 1
+                    .swiper-slide
+                      img
+                        width 750px
+                        height 400px
+    .homeMain
+      .homeScroll
+        .swiper-container
           img
-            width 750px
-            height 400px
+            width 100%
+            height 341px
 </style>

@@ -3,5 +3,13 @@
  */
 export default {
   policyDescList:[],
-  kingKongModule:{}
+  kingKongModule:{},
+  personalShop:[],
+  categoryHotSellModule:{},
+  popularItemList:[],
+  flashSaleModule:{},
+  newItemList:[],
+  categoryModule:[],
+  categoryL1List:[],
+  search:[]
 }

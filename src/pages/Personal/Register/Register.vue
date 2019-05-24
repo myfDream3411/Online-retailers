@@ -3,11 +3,12 @@
     <Header></Header>
     <div class="login_content">
       <div class="login_logo">
-        <img src="http://yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" data-reactid=".0.1.0.1.0.0">
+        <span>手机号注册</span>
       </div>
-      <section class="login_message" v-if="!isShow">
+      <section class="login_message">
         <input type="tel" maxlength="11" placeholder="请输入手机号"
-               name="phone" v-model="phone" v-validate="{required:true,regex:/^1\d{10}$/}">
+               v-model="phone" name="phone"
+               v-validate="{required:true,regex:/^1\d{10}$/}">
         <span style="color: red; display: block;">{{errors.first('phone')}}</span>
         <input type="tel" maxlength="6" placeholder="请输入短信验证码"
                name="验证码" v-model="code"
@@ -17,45 +18,23 @@
           <a href="javascript:;">{{computeTime>0 ? `已发送(${computeTime}s)` : '获取验证码'}}</a>
         </div>
         <span style="color: red; display: block">{{errors.first('验证码')}}</span>
-        <input type="tel" maxlength="11" placeholder="遇到问题？">
-        <div class="psg" @click="isShowFn">
-          <a href="javascript:;">使用密码验证登录</a>
-        </div>
-        <div class="mainContent">
-          <div class="btnSign" @click.prevent="login">
-            <span>登录</span>
-          </div>
-          <div class="btnRegister" @click="$router.replace('/personal')">
-            <span>其他登录方式</span>
-          </div>
-          <div class="phone" @click="$router.replace('/register')">
-            <span>注册帐号</span>
-            <i class="iconfont icontiaozhuanqianwangyoujiantouxiangyouxiayibuxianxing"></i>
-          </div>
-        </div>
-      </section>
-      <section class="login_message" v-if="isShow">
-        <input type="tel" maxlength="11" placeholder="请输入手机号"
-               v-model="phone" name="phone"
-               v-validate="{required:true,regex:/^1\d{10}$/}">
-        <span style="color: red; display: block;">{{errors.first('phone')}}</span>
         <input type="tel" maxlength="6" placeholder="请输入密码"
-               v-model="密码" name="pwd"
+               v-model="pwd" name="密码"
                v-validate="{required:true,regex:/^.\{6}$/}">
         <span style="color: red; display: block;">{{errors.first('密码')}}</span>
-        <input type="tel" maxlength="11" placeholder="忘记密码">
-        <div class="psg" @click="isShowFn">
-          <a href="javascript:;">使用短信验证登录</a>
-        </div>
         <div class="mainContent">
-          <div class="btnSign" @click.prevent="login">
-            <span>登录</span>
+          <div class="btnSign" @click="login">
+            <span>注册</span>
           </div>
-          <div class="btnRegister" @click="$router.push('/personal')">
-            <span>其他登录方式</span>
+          <div class="tips">
+            <input type="checkbox">
+            <span>我同意</span>
+            <span >《服务条款》</span>
+            <span>和</span>
+            <span>《网易隐私策略》</span>
           </div>
-          <div class="phone" @click="$router.replace('/register')">
-            <span>注册帐号</span>
+          <div class="phone" @click="$router.push('/email')">
+            <span>邮箱账号注册</span>
             <i class="iconfont icontiaozhuanqianwangyoujiantouxiangyouxiayibuxianxing"></i>
           </div>
         </div>
@@ -66,9 +45,8 @@
 
 <script type="text/ecmascript-6">
   import Header from '.././Header/Header.vue'
-  import {MessageBox,Toast} from 'mint-ui'
   export default {
-    name: "Login",
+    name: "Register",
     data(){
       return{
         phone: '', // 手机号
@@ -82,9 +60,6 @@
       }
     },
     methods:{
-      isShowFn(){
-        this.isShow = !this.isShow
-      },
       sendCode(){
         this.computeTime = 30
         const intervalId = setInterval(()=>{
@@ -107,12 +82,6 @@
         return /^1\d{10}$/.test(this.phone)
       }
     }
-//    methods:{
-//      handlePersonal(){
-//        this.isShow = !this.isShow
-//      }
-//    },
-
   }
 </script>
 
@@ -122,9 +91,10 @@
     .login_logo
       text-align center
       margin-top 56px
-      img
-        width 192px
-        height 64px
+      span
+        font-size 36px
+        line-height 52px
+        color #333
     .login_message
       margin-top 150px
       margin-left 80px
@@ -155,19 +125,6 @@
         z-index 99
         a
           color #333
-
-      .psg
-        position absolute
-        top 330px
-        right 0
-        width 300px
-        a
-          background none
-          color #333
-          font-size 30px
-          height 45px
-          padding 0
-          line-height 45px
       .mainContent
         margin-right 70px
         .btnSign
@@ -181,19 +138,24 @@
           text-align center
           i
             font-size 30px
-        .btnRegister
+        .tips
           width 100%
-          height 95px
-          line-height 95px
-          border 1px solid #b4282d
-          margin-bottom 32px
-          font-size 30px
-          text-align center
-          i
-            font-size 30px
+          input
+            float left
+            margin-top 0
+            margin-right 5px
+            display inline-block
+            width 34px
+            height 34px
+            border 1px solid #999
+          span
+            float left
+            &:nth-child(2n+1)
+              color #007AFF
         .phone
+          margin-top 80px
           color #333
-          font-size 30px
+          font-size 28px
           text-align center
           i
             font-size 30px

@@ -34,15 +34,13 @@
   .kingKongContainer
     width 100%
     height 372px
-    background yellow
     .kingKongList
       display flex
       flex-wrap wrap
       .kingKongLi
         height 156px
         width 110px
-        background red
-        margin 10px 20px
+        margin 14px 19px
         a
           width 110px
           height 110px
